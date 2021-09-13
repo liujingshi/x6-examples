@@ -1,0 +1,1 @@
+import '@css/x6.less';
