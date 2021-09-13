@@ -21,6 +21,9 @@ module.exports = {
             "@assets": resolve("src/assets"),
             "@img": resolve("src/assets/img"),
             "@css": resolve("src/assets/css"),
+            "@base-model": resolve("src/model"),
+            "@custom-cell": resolve("src/custom-cell"),
+            "@config": resolve("src/config"),
         },
     },
 
