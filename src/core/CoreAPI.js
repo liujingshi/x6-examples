@@ -4,12 +4,12 @@ import { assign } from 'min-dash';
 
 
 function CoreAPI(config) {
-    this._config = assign({}, modulerConfig, config || {});
+    this.config = assign({}, modulerConfig, config || {});
     this._init();
 }
 
 CoreAPI.prototype._init = function () {
-    this.graph = new Graph(this._config);
+    this.graph = new Graph(this.config);
 }
 
 // 注册 Node

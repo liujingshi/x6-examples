@@ -1,6 +1,7 @@
 import CoreAPI from "./CoreAPI";
 import ElementFactory from "./ElementFactory";
 import ElementRepository from "./ElementRepository";
+import Toolbox from "../toolbox";
 
 function Diagram() {
     const config = {
@@ -9,6 +10,8 @@ function Diagram() {
     const coreAPI = new CoreAPI(config);
     const elementRepository = new ElementRepository();
     const elementFactory = new ElementFactory(coreAPI, elementRepository);
+    const toolbox = new Toolbox(coreAPI, elementFactory, elementRepository);
+    toolbox.createMenu();
     const node1 = elementFactory.createElement("custom-switch");
     const node2 = elementFactory.createElement("custom-switch");
     const edge = elementFactory.createElement("my-custom-edge");
