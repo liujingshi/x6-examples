@@ -11,7 +11,7 @@ module.exports = {
 
     // 输出
     output: {
-        path: resolve("dist"), // 输出路径
+        path: resolve("docs"), // 输出路径
         filename: "x6-examples.js", // 打包文件名
     },
 
