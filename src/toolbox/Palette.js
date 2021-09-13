@@ -11,7 +11,8 @@ function Palette(coreAPI, elementFactory, elementRepository, toolbox) {
         {
             code: "node",
             name: "节点",
-            items: ["my-custom-node", "custom-switch"],
+            items: ["custom-switch", "custom-switch", "custom-switch", "custom-switch", "custom-switch",
+                    "custom-switch", "custom-switch", "custom-switch", "custom-switch", "custom-switch"],
         },
         // {
         //     code: "edge",
@@ -98,6 +99,14 @@ Palette.prototype._update = function () {
     this.groups.forEach((group) => {
         this._addGroup(group);
     });
+    this._coreAPI.gridLayout(
+        {
+            width: this.container.offsetWidth,
+            // cols: 1,
+            // nodeSize: [200, 200],
+        },
+        this.graph
+    );
     this._event();
 };
 

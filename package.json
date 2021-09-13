@@ -28,7 +28,9 @@
         "webpack-dev-server": "4.1.0"
     },
     "dependencies": {
+        "@antv/layout": "0.1.19-beta.1",
         "@antv/x6": "1.26.2",
+        "layui": "2.6.8",
         "min-dash": "3.8.0"
     }
 }

@@ -160,7 +160,7 @@ const modulerConfig = {
 /**
  * Addon.Stencil 默认配置
  */
- const stencilConfig = {
+const stencilConfig = {
     // 标题
     title: "调色板",
     // 分组信息
@@ -179,16 +179,46 @@ const modulerConfig = {
     stencilGraphHeight: 800,
     // 模板画布边距
     stencilGraphPadding: 10,
-}
+};
 
 /**
  * Addon.Dnd 默认配置
  */
- const dndConfig = {
+const dndConfig = {
     // 是否根据目标画布的缩放比例缩放拖拽的节点
     scaled: false,
     // 拖拽结束时，而且目标节点不能添加到目标画布时，是否使用动画将代理画布移动到开始拖动的位置
     animation: true,
-}
+};
 
-export { viewerConfig, modulerConfig, stencilConfig, dndConfig };
+/**
+ * 网格布局默认配置
+ */
+const gridLayoutConfig = {
+    // 布局类型
+    type: 'grid',
+    // 开始位置 左上角
+    begin: [0, 0],
+    // 宽度
+    width: undefined,
+    // 高度
+    height: undefined,
+    // 布局中心点
+    center: undefined,
+    // 是否防止重叠
+    preventOverlap: true,
+    // 防止重叠时的间距
+    preventOverlapPadding: 10,
+    // 行数
+    rows: undefined,
+    // 列数
+    cols: undefined,
+    // 为 false 时表示利用所有可用画布空间，为 true 时表示利用最小的画布空间
+    condense: true,
+    // 排序依据 节点属性名
+    sortBy: undefined,
+    // 统一的节点尺寸
+    nodeSize: 30,
+};
+
+export { viewerConfig, modulerConfig, stencilConfig, dndConfig, gridLayoutConfig };

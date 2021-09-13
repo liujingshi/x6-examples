@@ -1,5 +1,6 @@
 import { Graph, Addon } from "@antv/x6";
-import { modulerConfig, stencilConfig, dndConfig } from "@config/x6DefaultConfig";
+import { GridLayout } from "@antv/layout";
+import { modulerConfig, stencilConfig, dndConfig, gridLayoutConfig } from "@config/x6DefaultConfig";
 import { assign } from "min-dash";
 
 function CoreAPI(config) {
@@ -14,7 +15,7 @@ CoreAPI.prototype._init = function () {
 CoreAPI.prototype.createGraph = function (config) {
     const graph = new Graph(config);
     return graph;
-}
+};
 
 // 注册 Node
 CoreAPI.prototype.registerNode = function (name, nodeConfig) {
@@ -29,7 +30,7 @@ CoreAPI.prototype.registerEdge = function (name, edgeConfig) {
 // 创建 Node
 CoreAPI.prototype.createNode = function (node, graph) {
     return (graph || this.graph).createNode(node);
-}
+};
 
 // 添加 Node 到 Graph
 CoreAPI.prototype.addNode = function (node, graph) {
@@ -39,7 +40,7 @@ CoreAPI.prototype.addNode = function (node, graph) {
 // 创建 Edge
 CoreAPI.prototype.createEdge = function (edge, graph) {
     return (graph || this.graph).createEdge(edge);
-}
+};
 
 // 添加 Edge 到 Graph
 CoreAPI.prototype.addEdge = function (edge, graph) {
@@ -65,6 +66,22 @@ CoreAPI.prototype.redo = function () {
     this.graph.redo();
 };
 
+// 网格布局
+CoreAPI.prototype.gridLayout = function (options, graph) {
+    options = assign({}, gridLayoutConfig, options || {});
+    console.log(options)
+    graph = graph || this.graph;
+    const nodes = graph.getNodes();
+    const edges = graph.getEdges();
+    const data = {
+        nodes: nodes,
+        edges: edges,
+    };
+    const gridLayout = new GridLayout(options);
+    const model = gridLayout.layout(data);
+    graph.fromJSON(model);
+};
+
 // 创建拖拽实例 调色板
 CoreAPI.prototype.createStencil = function (options) {
     options = assign({}, stencilConfig, options || {});
@@ -73,9 +90,13 @@ CoreAPI.prototype.createStencil = function (options) {
 
 // 创建拖拽实例 调色板
 CoreAPI.prototype.createDnd = function (options) {
-    options = assign({
-        target: this.graph
-    }, dndConfig, options || {});
+    options = assign(
+        {
+            target: this.graph,
+        },
+        dndConfig,
+        options || {}
+    );
     this.dnd = new Addon.Dnd(options);
 };
 

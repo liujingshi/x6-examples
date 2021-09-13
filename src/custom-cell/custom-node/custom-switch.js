@@ -4,8 +4,8 @@ class CustomSwitch extends Node {
     constructor(coreAPI, elementRepository) {
         super(coreAPI, elementRepository);
         this.shape = "custom-switch";
-        this.width = 50;
-        this.height = 20;
+        this.width = 100;
+        this.height = 30;
         this.markup = [
             {
                 tagName: "g",
