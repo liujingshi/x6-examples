@@ -28,12 +28,30 @@ class Node extends Base {
         if (isUndefined(this._coreAPI)) {
             return;
         }
+        this.createX6Element(id, x, y);
+        this.addToGraph();
+        return this.x6Element;
+    }
+
+    // 创建 x6 对象
+    createX6Element(id, x, y) {
+        if (isUndefined(this._coreAPI)) {
+            return;
+        }
         this.id = id;
         this.x = x;
         this.y = y;
-        this.x6Element = this._coreAPI.addNode(this.json());
-        this._elementRepository.isCreate(this);
+        this.x6Element = this._coreAPI.createNode(this.json(), this.graph);
         return this.x6Element;
+    }
+
+    // 添加到画布
+    addToGraph() {
+        if (isUndefined(this._coreAPI) || isUndefined(this.x6Element)) {
+            return;
+        }
+        this._coreAPI.addNode(this.x6Element, this.graph);
+        this._elementRepository.isCreate(this);
     }
 }
 

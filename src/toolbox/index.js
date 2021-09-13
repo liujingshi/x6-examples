@@ -1,4 +1,5 @@
 import Menu from "./Menu";
+import Palette from "./Palette";
 
 function Toolbox(coreAPI, elementFactory, elementRepository) {
     this._coreAPI = coreAPI;
@@ -21,6 +22,10 @@ Toolbox.prototype._init = function () {
 
 Toolbox.prototype.createMenu = function () {
     this.menu = new Menu(this._coreAPI, this._elementFactory, this._elementRepository, this);
+}
+
+Toolbox.prototype.createPalette = function () {
+    this.palette = new Palette(this._coreAPI, this._elementFactory, this._elementRepository, this);
 }
 
 export default Toolbox;

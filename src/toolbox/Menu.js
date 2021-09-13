@@ -4,8 +4,6 @@ function Menu(coreAPI, elementFactory, elementRepository, toolbox) {
     this._elementRepository = elementRepository;
     this._toolbox = toolbox;
 
-    console.log(this._coreAPI)
-
     this.items = [
         {
             name: "新建",

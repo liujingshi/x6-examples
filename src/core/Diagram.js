@@ -12,6 +12,7 @@ function Diagram() {
     const elementFactory = new ElementFactory(coreAPI, elementRepository);
     const toolbox = new Toolbox(coreAPI, elementFactory, elementRepository);
     toolbox.createMenu();
+    toolbox.createPalette();
     const node1 = elementFactory.createElement("custom-switch");
     const node2 = elementFactory.createElement("custom-switch");
     const edge = elementFactory.createElement("my-custom-edge");

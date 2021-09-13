@@ -28,13 +28,31 @@ class Edge extends Base {
         if (isUndefined(this._coreAPI)) {
             return;
         }
+        this.createX6Element(id, source, target, vertices);
+        this.addToGraph();
+        return this.x6Element;
+    }
+
+    // 创建 x6 对象
+    createX6Element(id, source, target, vertices) {
+        if (isUndefined(this._coreAPI)) {
+            return;
+        }
         this.id = id;
         this.source = source;
         this.target = target;
         this.vertices = vertices;
-        this.x6Element = this._coreAPI.addEdge(this.json());
-        this._elementRepository.isCreate(this);
+        this.x6Element = this._coreAPI.createEdge(this.json(), this.graph);
         return this.x6Element;
+    }
+
+    // 添加到画布
+    addToGraph() {
+        if (isUndefined(this._coreAPI) || isUndefined(this.x6Element)) {
+            return;
+        }
+        this._coreAPI.addEdge(this.x6Element, this.graph);
+        this._elementRepository.isCreate(this);
     }
 }
 

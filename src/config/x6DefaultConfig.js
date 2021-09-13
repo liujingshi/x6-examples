@@ -12,24 +12,19 @@ const viewerConfig = {
     autoResize: true,
     // 画布可以拖动
     panning: {
-        enabled: true,
-        // 触发画布拖拽的行为 ['leftMouseDown', 'rightMouseDown', 'mouseWheel']
-        eventTypes: ["rightMouseDown"],
+        enabled: false,
     },
     // 网格
     grid: {
-        size: 10, // 网格大小 10px
-        visible: true, // 渲染网格背景
+        visible: false, // 渲染网格背景
     },
     // 背景
     background: {
-        color: "#fffbe6", // 设置画布背景颜色
+        color: "#f5f5f5", // 设置画布背景颜色
     },
     // 鼠标滚轮缩放
     mousewheel: {
-        enabled: true,
-        // 需要按住哪个键 不填就是直接滚轮
-        modifiers: [],
+        enabled: false,
     },
     // 节点不可拖动
     interacting: false,
@@ -162,4 +157,38 @@ const modulerConfig = {
     },
 };
 
-export { viewerConfig, modulerConfig };
+/**
+ * Addon.Stencil 默认配置
+ */
+ const stencilConfig = {
+    // 标题
+    title: "调色板",
+    // 分组信息
+    groups: [],
+    // 搜索选项
+    search: false,
+    // 搜索的 placeholder
+    placeholder: "请输入要查找的元素",
+    // 没找到显示的文本
+    notFoundText: "没有匹配的元素",
+    // 是否显示全局折叠/展开按钮
+    collapsable: false,
+    // 模板画布宽度
+    stencilGraphWidth: 200,
+    // 模板画布高度
+    stencilGraphHeight: 800,
+    // 模板画布边距
+    stencilGraphPadding: 10,
+}
+
+/**
+ * Addon.Dnd 默认配置
+ */
+ const dndConfig = {
+    // 是否根据目标画布的缩放比例缩放拖拽的节点
+    scaled: false,
+    // 拖拽结束时，而且目标节点不能添加到目标画布时，是否使用动画将代理画布移动到开始拖动的位置
+    animation: true,
+}
+
+export { viewerConfig, modulerConfig, stencilConfig, dndConfig };

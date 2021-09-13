@@ -2,6 +2,7 @@ class Base {
     constructor(coreAPI, elementRepository) {
         this._coreAPI = coreAPI;
         this._elementRepository = elementRepository;
+        this.graph = null;
     }
 
     json() {
