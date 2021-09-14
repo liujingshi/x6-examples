@@ -1,5 +1,6 @@
 const path = require("path"); //nodejs内置模块
 const HtmlWebpackPlugin = require("html-webpack-plugin"); // HtmlWebpackPlugin
+const CopyWebpackPlugin = require("copy-webpack-plugin"); // 复制静态资源
 const resolve = (url) => path.resolve(__dirname, url); // 定义resolve
 const join = (url) => path.join(__dirname, url); // 定义join
 
@@ -59,6 +60,15 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: "index.html",
             template: resolve("public/index.html"),
+        }),
+        // 复制静态资源
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: resolve("public/static"),
+                    to: resolve("docs/static"),
+                },
+            ],
         }),
     ],
 

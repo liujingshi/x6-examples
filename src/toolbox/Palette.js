@@ -11,8 +11,18 @@ function Palette(coreAPI, elementFactory, elementRepository, toolbox) {
         {
             code: "node",
             name: "节点",
-            items: ["custom-switch", "custom-switch", "custom-switch", "custom-switch", "custom-switch",
-                    "custom-switch", "custom-switch", "custom-switch", "custom-switch", "custom-switch"],
+            items: [
+                "custom-switch",
+                "custom-switch",
+                "custom-switch",
+                "custom-switch",
+                "custom-switch",
+                "custom-switch",
+                "custom-switch",
+                "custom-switch",
+                "custom-switch",
+                "custom-switch",
+            ],
         },
         // {
         //     code: "edge",
@@ -21,34 +31,80 @@ function Palette(coreAPI, elementFactory, elementRepository, toolbox) {
         // },
     ];
 
-    this._init();
+    this._initTree();
 }
+
+Palette.prototype._initTree = function () {
+    layui.use("tree", function () {
+        var tree = layui.tree;
+
+        //渲染
+        this.paletteTree = tree.render({
+            elem: ".x6-palette", //绑定元素
+            data: [
+                {
+                    title: "文本注释",
+                    children: [
+                        {
+                            title: "环境因素",
+                        },
+                    ],
+                },
+                {
+                    title: "容器",
+                    children: [
+                        {
+                            title: "房子",
+                        },
+                    ],
+                },
+                {
+                    title: "节点",
+                    children: [
+                        {
+                            title: "淀粉",
+                        },
+                        {
+                            title: "药粉",
+                        },
+                    ],
+                },
+                {
+                    title: "连接",
+                    children: [
+                        {
+                            title: "顺序流",
+                        },
+                    ],
+                },
+            ],
+        });
+    });
+};
 
 Palette.prototype._init = function () {
     // 插入 palette 到 toolbox
-    this.container_class = "x6-toolbox-palette-container";
-    this.group_class = "x6-toolbox-palette-group";
-    this.item_class = "x6-toolbox-palette-item";
-    const toolbox_container = this._toolbox.toolbox_container;
-    const containers = toolbox_container.querySelectorAll("." + this.container_class);
-    if (containers.length == 0) {
-        this.container = document.createElement("div");
-        this.container.setAttribute("class", this.container_class);
-        toolbox_container.appendChild(this.container);
-    }
-
+    // this.container_class = "x6-toolbox-palette-container";
+    // this.group_class = "x6-toolbox-palette-group";
+    // this.item_class = "x6-toolbox-palette-item";
+    // const toolbox_container = this._toolbox.toolbox_container;
+    // const containers = toolbox_container.querySelectorAll("." + this.container_class);
+    // if (containers.length == 0) {
+    //     this.container = document.createElement("div");
+    //     this.container.setAttribute("class", this.container_class);
+    //     toolbox_container.appendChild(this.container);
+    // }
     // this._coreAPI.createStencil({
     //     stencilGraphWidth: this.container.offsetWidth,
     //     stencilGraphHeight: this.container.offsetHeight,
     // });
     // this.container.appendChild(this._coreAPI.stencil.container);
     // this.stencil = this._coreAPI.stencil;
-    this._coreAPI.createDnd({
-        containerParent: this.container,
-    });
-    this.dnd = this._coreAPI.dnd;
-
-    this._update();
+    // this._coreAPI.createDnd({
+    //     containerParent: this.container,
+    // });
+    // this.dnd = this._coreAPI.dnd;
+    // this._update();
 };
 
 Palette.prototype._addItem = function (item, index) {

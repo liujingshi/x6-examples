@@ -47,12 +47,13 @@ const modulerConfig = {
     // 网格
     grid: {
         size: 10, // 网格大小 10px
-        visible: true, // 渲染网格背景
+        visible: false, // 渲染网格背景
     },
     // 背景
-    background: {
-        color: "#fffbe6", // 设置画布背景颜色
-    },
+    // background: {
+    //     color: "#fffbe6", // 设置画布背景颜色
+    // },
+    background: false,
     // 鼠标滚轮缩放
     mousewheel: {
         enabled: true,
