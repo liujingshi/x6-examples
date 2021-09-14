@@ -102,7 +102,7 @@ const modulerConfig = {
         // 显示节点选择框
         showNodeSelectionBox: true,
         // 显示边选择框
-        showEdgeSelectionBox: true,
+        showEdgeSelectionBox: false,
     },
     // 节点是否可以旋转
     rotating: false,
