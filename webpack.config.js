@@ -1,6 +1,6 @@
 const path = require("path"); //nodejs内置模块
 const HtmlWebpackPlugin = require("html-webpack-plugin"); // HtmlWebpackPlugin
-const CopyWebpackPlugin = require("copy-webpack-plugin"); // 复制静态资源
+// const CopyWebpackPlugin = require("copy-webpack-plugin"); // 复制静态资源
 const resolve = (url) => path.resolve(__dirname, url); // 定义resolve
 const join = (url) => path.join(__dirname, url); // 定义join
 
@@ -25,6 +25,8 @@ module.exports = {
             "@base-model": resolve("src/model"),
             "@custom-cell": resolve("src/custom-cell"),
             "@config": resolve("src/config"),
+            "@core": resolve("src/core"),
+            "@views": resolve("src/views"),
         },
     },
 
@@ -51,6 +53,29 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/,
                 use: ["style-loader", "css-loader", "less-loader"],
             },
+            {
+                test: /\.html$/,
+                exclude: /(node_modules|bower_components)/,
+                loader: "html-loader",
+            },
+            {
+                test: /\.scss$/,
+                // 注意:use 的别名 是 loaders。下面3个加载的执行顺序是 3 2 1
+                use: [
+                    // 1.不用传递参数可以简写
+                    "style-loader",
+                    {
+                        loader: "css-loader",
+                        // 2.给css-loader传递参数
+                        options: {
+                            url: true,
+                            import: true,
+                        },
+                    },
+                    // 3.使用sass加载器
+                    "sass-loader",
+                ],
+            },
         ],
     },
 
@@ -62,14 +87,14 @@ module.exports = {
             template: resolve("public/index.html"),
         }),
         // 复制静态资源
-        new CopyWebpackPlugin({
-            patterns: [
-                {
-                    from: resolve("public/static"),
-                    to: resolve("docs/static"),
-                },
-            ],
-        }),
+        // new CopyWebpackPlugin({
+        //     patterns: [
+        //         {
+        //             from: resolve("public/static"),
+        //             to: resolve("docs/static"),
+        //         },
+        //     ],
+        // }),
     ],
 
     // 运行 server

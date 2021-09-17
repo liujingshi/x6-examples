@@ -19,6 +19,9 @@ function Diagram() {
     const x6Node1 = node1.create("node1", 500, 100);
     const x6Node2 = node2.create("node2", 500, 500);
     edge.create("edge1", x6Node1, x6Node2);
+    coreAPI.graph.zoomToFit({
+        padding: 20
+    });
 }
 
 export default Diagram;

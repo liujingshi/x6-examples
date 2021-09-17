@@ -1,4 +1,5 @@
+import 'bootstrap/scss/bootstrap.scss';
 import '@css/x6.less';
-import { Diagram } from './core';
+import Router from './router/router';
 
-new Diagram();
+new Router();

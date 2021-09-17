@@ -91,7 +91,7 @@ function Palette(coreAPI, elementFactory, elementRepository, toolbox) {
     this._coreAPI.createDnd();
     this.dnd = this._coreAPI.dnd;
 
-    this._initTree();
+    // this._initTree();
 }
 
 Palette.prototype._initTree = function () {
