@@ -1,7 +1,8 @@
 const path = require("path"); //nodejs内置模块
 const HtmlWebpackPlugin = require("html-webpack-plugin"); // HtmlWebpackPlugin
+const { CleanWebpackPlugin } = require("clean-webpack-plugin"); // 清理dist文件夹
 // const CopyWebpackPlugin = require("copy-webpack-plugin"); // 复制静态资源
-const webpack = require('webpack'); // webpack
+const webpack = require("webpack"); // webpack
 const resolve = (url) => path.resolve(__dirname, url); // 定义resolve
 const join = (url) => path.join(__dirname, url); // 定义join
 
@@ -14,7 +15,7 @@ module.exports = {
     // 输出
     output: {
         path: resolve("docs"), // 输出路径
-        filename: "x6-examples.js", // 打包文件名
+        filename: "main.[hash].js", // 打包文件名
     },
 
     // 设置几个别名
@@ -83,6 +84,8 @@ module.exports = {
 
     // 插件
     plugins: [
+        // 清理dist文件夹
+        new CleanWebpackPlugin(),
         // 加载index.html
         new HtmlWebpackPlugin({
             filename: "index.html",
@@ -99,10 +102,10 @@ module.exports = {
         // }),
         // 加载 jQuery
         new webpack.ProvidePlugin({
-            "$": "jquery",
-            "jQuery": "jquery",
-            "window.jQuery": "jquery"
-        })
+            $: "jquery",
+            jQuery: "jquery",
+            "window.jQuery": "jquery",
+        }),
     ],
 
     // 运行 server
