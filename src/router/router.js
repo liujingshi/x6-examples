@@ -75,6 +75,7 @@ Router.prototype.goto = function (url) {
  */
 Router.prototype.gotoBlank = function (url) {
     url = url || "";
+    console.log(window.location)
     window.open(window.location.origin + "/#" + url, "_blank");
 };
 
