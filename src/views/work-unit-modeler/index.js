@@ -1,3 +1,4 @@
+import '@css/modeler.less';
 import { assign } from 'min-dash';
 import { Diagram } from '@core';
 const templateStr = require("./template.html");

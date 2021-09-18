@@ -1,6 +1,7 @@
 const path = require("path"); //nodejs内置模块
 const HtmlWebpackPlugin = require("html-webpack-plugin"); // HtmlWebpackPlugin
 // const CopyWebpackPlugin = require("copy-webpack-plugin"); // 复制静态资源
+const webpack = require('webpack'); // webpack
 const resolve = (url) => path.resolve(__dirname, url); // 定义resolve
 const join = (url) => path.join(__dirname, url); // 定义join
 
@@ -22,6 +23,7 @@ module.exports = {
             "@assets": resolve("src/assets"),
             "@img": resolve("src/assets/img"),
             "@css": resolve("src/assets/css"),
+            "@tmpl": resolve("src/assets/tmpl"),
             "@base-model": resolve("src/model"),
             "@custom-cell": resolve("src/custom-cell"),
             "@config": resolve("src/config"),
@@ -95,6 +97,12 @@ module.exports = {
         //         },
         //     ],
         // }),
+        // 加载 jQuery
+        new webpack.ProvidePlugin({
+            "$": "jquery",
+            "jQuery": "jquery",
+            "window.jQuery": "jquery"
+        })
     ],
 
     // 运行 server

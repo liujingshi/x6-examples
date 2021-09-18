@@ -1,35 +1,17 @@
 import { viewerConfig } from "@config/x6DefaultConfig";
 import { assign, isArray } from "min-dash";
+const templateStr = require("@tmpl/toolbox/palette/template.html");
 
-function Palette(coreAPI, elementFactory, elementRepository, toolbox) {
-    this._coreAPI = coreAPI;
-    this._elementFactory = elementFactory;
-    this._elementRepository = elementRepository;
-    this._toolbox = toolbox;
-
-    this.groups = [
-        {
-            code: "node",
-            name: "节点",
-            items: [
-                "custom-switch",
-                "custom-switch",
-                "custom-switch",
-                "custom-switch",
-                "custom-switch",
-                "custom-switch",
-                "custom-switch",
-                "custom-switch",
-                "custom-switch",
-                "custom-switch",
-            ],
-        },
-        // {
-        //     code: "edge",
-        //     name: "连线",
-        //     items: ["my-custom-edge"],
-        // },
-    ];
+function Palette($parent, props) {
+    const defaults = {
+        coreAPI: null,
+        elementFactory: null,
+        elementRepository: null,
+    };
+    props = assign({}, defaults, props || {});
+    this._coreAPI = props.coreAPI;
+    this._elementFactory = props.elementFactory;
+    this._elementRepository = props.elementRepository;
 
     this.data = [
         {
@@ -91,32 +73,13 @@ function Palette(coreAPI, elementFactory, elementRepository, toolbox) {
     this._coreAPI.createDnd();
     this.dnd = this._coreAPI.dnd;
 
-    // this._initTree();
+    this._init($parent);
 }
 
-Palette.prototype._initTree = function () {
-    layui.use("tree", () => {
-        const tree = layui.tree;
-
-        //渲染
-        this.paletteTree = tree.render({
-            elem: ".x6-palette", //绑定元素
-            id: "palette-tree",
-            data: this.data,
-        });
-
-        this._loadTreeIcon();
-
-        this._coreAPI.on(
-            "node:click",
-            ({ e, node }) => {
-                if (this._clickTypeLink) {
-                    this._linkModeNodeClick(e, node);
-                }
-            },
-            this
-        );
-    });
+Palette.prototype._init = function ($parent) {
+    $parent.empty();
+    this._el = $.tmpl(templateStr);
+    $parent.append(this._el);
 };
 
 Palette.prototype._loadTreeIcon = function () {
@@ -237,31 +200,6 @@ Palette.prototype._removeActive = function () {
     };
     remove(this.data);
     this._clickTypeLink = false;
-};
-
-Palette.prototype._init = function () {
-    // 插入 palette 到 toolbox
-    // this.container_class = "x6-toolbox-palette-container";
-    // this.group_class = "x6-toolbox-palette-group";
-    // this.item_class = "x6-toolbox-palette-item";
-    // const toolbox_container = this._toolbox.toolbox_container;
-    // const containers = toolbox_container.querySelectorAll("." + this.container_class);
-    // if (containers.length == 0) {
-    //     this.container = document.createElement("div");
-    //     this.container.setAttribute("class", this.container_class);
-    //     toolbox_container.appendChild(this.container);
-    // }
-    // this._coreAPI.createStencil({
-    //     stencilGraphWidth: this.container.offsetWidth,
-    //     stencilGraphHeight: this.container.offsetHeight,
-    // });
-    // this.container.appendChild(this._coreAPI.stencil.container);
-    // this.stencil = this._coreAPI.stencil;
-    // this._coreAPI.createDnd({
-    //     containerParent: this.container,
-    // });
-    // this.dnd = this._coreAPI.dnd;
-    // this._update();
 };
 
 Palette.prototype._addItem = function (item, index) {

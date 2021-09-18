@@ -34,7 +34,10 @@
     "dependencies": {
         "@antv/layout": "0.1.19-beta.1",
         "@antv/x6": "1.26.2",
+        "@popperjs/core": "2.10.1",
         "bootstrap": "5.1.1",
+        "jquery": "3.6.0",
+        "jsrender": "1.0.11",
         "min-dash": "3.8.0"
     }
 }

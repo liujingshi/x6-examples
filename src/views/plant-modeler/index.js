@@ -1,23 +1,19 @@
+import '@css/modeler.less';
 import { assign } from 'min-dash';
 import { Diagram } from '@core';
 const templateStr = require("./template.html");
 
-const template = function () {
-    const box = document.createElement("div");
-    box.innerHTML = templateStr.default;
-    return box.children;
-};
-
-const init = function (parentElement, props) {
+const init = function ($parent, props) {
     const defaults = {
         router: null
     };
-    props = assign({}, defaults, props);
-    const element = template();
-    [].slice.call(element).forEach((el) => {
-        parentElement.appendChild(el);
+    props = assign({}, defaults, props || {});
+    const $element = $.tmpl(templateStr);
+    $parent.append($element);
+    new Diagram({
+        paletteContainer: $('.modeler-palette', $element),
+        x6Container: $('.modeler-x6', $element),
     });
-    new Diagram();
 };
 
 export default {

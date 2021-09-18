@@ -1,5 +1,5 @@
 import "@css/home.less";
-import { assign } from 'min-dash';
+import { assign } from "min-dash";
 const templateStr = require("./template.html");
 const templateItemStr = require("./template-item.html");
 
@@ -41,58 +41,41 @@ const items = [
                     d="M440.35245295 249.21815683h135.28481012v79.65783188h-135.28481013z m0 445.01582264h135.28481012v79.65783187h-135.28481013zM249.21815683 440.35245295h79.65783188v135.28481012H249.21815683z m445.01582264 0h79.65783187v135.28481012h-78.9903078z"
                     fill="#ffffff"></path>
             </svg>
-        `
-    }
-]
+        `,
+    },
+];
 
-const template = function (templateStr) {
-    const box = document.createElement("div");
-    box.innerHTML = templateStr.default;
-    return box.children;
-};
-
-const init = function (parentElement, props) {
+const init = function ($parent, props) {
     const defaults = {
-        router: null
+        router: null,
     };
     props = assign({}, defaults, props);
-    const element = template(templateStr);
-    [].slice.call(element).forEach((el) => {
-        parentElement.appendChild(el);
-    });
-    loadItem(parentElement, props);
+    const element = $.tmpl(templateStr);
+    $parent.append(element);
+    loadItem($parent, props);
 };
 
-const loadItem = function (parentElement, props) {
-    const body = parentElement.querySelector(".home-body");
-    if (body) {
-        body.innerHTML = "";
-        items.forEach(item => {
-            const itemEls = template(templateItemStr);
-            if (itemEls.length > 0) {
-                const itemEl = itemEls[0];
-                const nameEl = itemEl.querySelector(".home-item-name");
-                if (nameEl) {
-                    nameEl.innerHTML = item.name;
-                }
-                const svgEl = itemEl.querySelector(".home-item-icon-box");
-                if (svgEl) {
-                    svgEl.innerHTML = item.svg;
-                }
-                body.appendChild(itemEl);
-                itemEl.addEventListener("click", () => {
+const loadItem = function ($parent, props) {
+    const $body = $(".home-body", $parent);
+    if ($body) {
+        $body.empty();
+        items.forEach((item) => {
+            const $itemEl = $.tmpl(templateItemStr, item);
+            if ($itemEl.length > 0) {
+                $body.append($itemEl);
+                $itemEl.on("click", () => {
                     event(item, props);
-                })
+                });
             }
         });
     }
-}
+};
 
 const event = function (item, props) {
     if (props.router) {
-        props.router.goto(item.url);
+        props.router.gotoBlank(item.url);
     }
-}
+};
 
 export default {
     init: init,
