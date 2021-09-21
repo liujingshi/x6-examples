@@ -1,3 +1,4 @@
+import '@css/palette.less';
 import { viewerConfig } from "@config/x6DefaultConfig";
 import { assign, isArray } from "min-dash";
 const templateStr = require("@tmpl/toolbox/palette/template.html");

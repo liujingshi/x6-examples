@@ -6,7 +6,7 @@ const templateItemStr = require("./template-item.html");
 const items = [
     {
         url: "/plant/modeler",
-        name: "车间设计器",
+        name: "工段设计器",
         svg: `
             <svg viewBox="0 0 1101 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="120" height="120" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <path d="M220.851892 474.361081h647.795315v46.864144H220.851892z" fill="#ffffff"></path>
