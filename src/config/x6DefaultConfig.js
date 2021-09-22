@@ -127,6 +127,15 @@ const modulerConfig = {
         snap: {
             radius: 30,
         },
+        router: "manhattan",
+        connector: {
+            name: "rounded",
+            args: {
+                radius: 8,
+            },
+        },
+        anchor: "center",
+        connectionPoint: "anchor",
         // 是否允许连接到空白位置
         allowBlank: false,
         // 是否允许在相同的起始节点和终止之间创建多条边 false 在起始和终止节点之间只允许创建一条边  'withPort' 在起始和终止节点的相同链接桩之间只允许创建一条边
@@ -192,7 +201,6 @@ const dndConfig = {
 
     getDragNode: (node) => node.clone({ keepId: true }),
     getDropNode: (node) => node.clone({ keepId: true }),
-
 };
 
 /**
@@ -200,7 +208,7 @@ const dndConfig = {
  */
 const gridLayoutConfig = {
     // 布局类型
-    type: 'grid',
+    type: "grid",
     // 开始位置 左上角
     begin: [0, 0],
     // 宽度

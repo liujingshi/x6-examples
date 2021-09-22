@@ -5,7 +5,10 @@ class PersonEdge extends Edge {
         super(coreAPI, elementRepository);
         this.shape = "person-edge";
         this.connector = {
-            name: "smooth",
+            name: "rounded",
+            args: {
+                radius: 8,
+            },
         };
         this.attrs = {
             line: {
