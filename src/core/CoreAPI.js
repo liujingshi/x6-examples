@@ -19,6 +19,30 @@ CoreAPI.prototype._init = function () {
             });
         }
     });
+    this.graph.on("node:mouseenter", ({ e, x, y, node, view }) => {
+        const listeners = this._eventBus["node:mouseenter"];
+        if (listeners && isArray(listeners)) {
+            listeners.forEach((item) => {
+                item({ e, x, y, node, view });
+            });
+        }
+    });
+    this.graph.on("node:mouseleave", ({ e, x, y, node, view }) => {
+        const listeners = this._eventBus["node:mouseleave"];
+        if (listeners && isArray(listeners)) {
+            listeners.forEach((item) => {
+                item({ e, x, y, node, view });
+            });
+        }
+    });
+    this.graph.on("edge:connected", ({ edge, currentCell, currentMagnet }) => {
+        const listeners = this._eventBus["edge:connected"];
+        if (listeners && isArray(listeners)) {
+            listeners.forEach((item) => {
+                item({ edge, currentCell, currentMagnet });
+            });
+        }
+    });
 };
 
 CoreAPI.prototype.createGraph = function (config) {
@@ -139,6 +163,11 @@ CoreAPI.prototype.createDnd = function (options) {
         options || {}
     );
     this.dnd = new Addon.Dnd(options);
+};
+
+// 通过Id获取
+CoreAPI.prototype.getById = function (id) {
+    return this.graph.getCellById(id);
 };
 
 export default CoreAPI;

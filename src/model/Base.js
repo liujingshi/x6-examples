@@ -11,6 +11,8 @@ class Base {
             shape: this.shape,
             markup: this.markup,
             attrs: this.attrs,
+            html: this.html,
+            extra: this.extra,
         }
     }
 }

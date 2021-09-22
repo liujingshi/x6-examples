@@ -1,25 +1,13 @@
-import MyCustomEdge from "./custom-dege/my-custom-edge";
-import CustomSwitch from "./custom-node/custom-switch";
-import CustomSwitch1 from "./custom-node/custom-switch-1";
-import CustomSwitch2 from "./custom-node/custom-switch-2";
-import CustomSwitch3 from "./custom-node/custom-switch-3";
-import CustomSwitch4 from "./custom-node/custom-switch-4";
+import PersonEdge from "./custom-dege/person-edge";
+import WorkUnitNode from "./custom-node/work-unit-node/work-unit-node";
 
 const customCells = {
-    "my-custom-edge": MyCustomEdge,
-    "custom-switch": CustomSwitch,
-    "custom-switch-1": CustomSwitch1,
-    "custom-switch-2": CustomSwitch2,
-    "custom-switch-3": CustomSwitch3,
-    "custom-switch-4": CustomSwitch4,
+    "person-edge": PersonEdge,
+    "work-unit-node": WorkUnitNode,
 }
 
 export {
     customCells,
-    MyCustomEdge,
-    CustomSwitch,
-    CustomSwitch1,
-    CustomSwitch2,
-    CustomSwitch3,
-    CustomSwitch4,
+    PersonEdge,
+    WorkUnitNode,
 }

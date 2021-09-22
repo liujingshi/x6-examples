@@ -22,12 +22,23 @@ ElementFactory.prototype._register = function () {
 };
 
 // 创建元素
-ElementFactory.prototype.createElement = function (name, info) {
+ElementFactory.prototype.createElement = function (name, type, info) {
+    type = type || 'node';
     info = info || {};
     if (isDefined(name) && isDefined(customCells[name])) {
         const element = new customCells[name](this._coreAPI, this._elementRepository);
         assign(element, info);
-        this._elementRepository.add(element);
+        if (element.shape === "html") {
+            if (element.extra && element.extra.btns) {
+                element.width = element.extra.btns.length * 38;
+            }
+            if (element.extra) {
+                element.html = () => {
+                    return $.tmpl(element.template, element.extra);
+                };
+            }
+        }
+        this._elementRepository.add(element, type);
         return element;
     }
     return null;

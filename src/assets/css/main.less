@@ -20,4 +20,45 @@ body {
     .pointer {
         cursor: pointer;
     }
+
+    .single-text-btn {
+        width: 38px;
+        height: 38px;
+        color: #ffffff;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        transition: all .3s ease;
+
+        &.blue {
+            background: #1890FF;
+        }
+
+        &.red {
+            background: #F5222D;
+        }
+
+        &.gray {
+            background: #BFBFBF;
+        }
+
+        &:hover {
+            &.blue {
+                color: #1890FF;
+                background: #bae7ff;
+            }
+    
+            &.red {
+                color: #F5222D;
+                background: #ffccc7;
+            }
+    
+            &.gray {
+                color: #BFBFBF;
+                background: #434343;
+            }
+        }
+    }
 }

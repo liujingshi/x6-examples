@@ -2,22 +2,26 @@ import { assign, isUndefined } from "min-dash";
 import Base from "./Base";
 
 class Node extends Base {
-    constructor(coreAPI, elementRepository) { 
-        super(coreAPI, elementRepository)
+    constructor(coreAPI, elementRepository) {
+        super(coreAPI, elementRepository);
     }
 
     json() {
-        return assign({
-            x: this.x,
-            y: this.y,
-            width: this.width,
-            height: this.height,
-        }, super.json());
+        return assign(
+            {
+                x: this.x,
+                y: this.y,
+                width: this.width,
+                height: this.height,
+                ports: this.ports,
+            },
+            super.json()
+        );
     }
 
     // 注册
     register() {
-        if (isUndefined(this._coreAPI)) {
+        if (isUndefined(this._coreAPI) || this.shape === "html") {
             return;
         }
         this._coreAPI.registerNode(this.shape, this.json());
@@ -41,6 +45,32 @@ class Node extends Base {
         this.id = id;
         this.x = x;
         this.y = y;
+        this.ports = {
+            groups: {},
+            items: [],
+        };
+        const portAttrs = {
+            circle: {
+                r: 6,
+                magnet: true,
+                stroke: "#31d0c6",
+                strokeWidth: 2,
+                fill: "#fff",
+            },
+        };
+        const postion = ["top", "bottom", "left", "right", [0, 0], [0, this.height], [this.width, this.height], [this.width, 0]];
+        postion.forEach((item, index) => {
+            const group = "group" + index;
+            const id = group;
+            this.ports.groups[group] = {
+                position: item,
+                attrs: portAttrs,
+            };
+            this.ports.items.push({
+                id: id,
+                group: group,
+            });
+        });
         this.x6Element = this._coreAPI.createNode(this.json(), this.graph);
         return this.x6Element;
     }

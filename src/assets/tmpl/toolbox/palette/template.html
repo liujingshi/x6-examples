@@ -10,30 +10,17 @@
             data-bs-parent="#accordionExample">
             <div class="accordion-body">
                 <div class="palette-toolbox">
+                    {{for unitWorkNode}}
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="work-unit-toolbox green">
-                                <p>一、配液</p>
-                                <p>牛血清培养液</p>
+                            <div class="work-unit-toolbox {{:color}}" data-extra="{{:extraData}}">
+                                {{for #data.text}}
+                                <p>{{:#data}}</p>
+                                {{/for}}
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="work-unit-toolbox gray">
-                                <p>二、细胞培养</p>
-                                <p>狂犬病毒接种液</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="work-unit-toolbox gray">
-                                <p>三、生物反映</p>
-                                <p>狂犬病毒收获液</p>
-                            </div>
-                        </div>
-                    </div>
+                    {{/for}}
                 </div>
             </div>
         </div>
@@ -62,7 +49,20 @@
         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
             data-bs-parent="#accordionExample">
             <div class="accordion-body">
-                <div class="palette-toolbox"></div>
+                <div class="palette-toolbox">
+                    {{for edge}}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="edge-toolbox" data-extra="{{:extraData}}">
+                                <div class="edge-img">
+                                    <img src="{{:img}}">
+                                </div>
+                                <div class="edge-link"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/for}}
+                </div>
             </div>
         </div>
     </div>

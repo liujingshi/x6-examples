@@ -12,6 +12,8 @@ class Edge extends Base {
             target: this.target,
             vertices: this.vertices,
             connector: this.connector,
+            defaultLabel: this.defaultLabel,
+            labels: this.labels,
         }, super.json());
     }
 

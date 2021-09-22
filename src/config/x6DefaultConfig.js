@@ -186,9 +186,13 @@ const stencilConfig = {
  */
 const dndConfig = {
     // 是否根据目标画布的缩放比例缩放拖拽的节点
-    scaled: false,
+    scaled: true,
     // 拖拽结束时，而且目标节点不能添加到目标画布时，是否使用动画将代理画布移动到开始拖动的位置
     animation: true,
+
+    getDragNode: (node) => node.clone({ keepId: true }),
+    getDropNode: (node) => node.clone({ keepId: true }),
+
 };
 
 /**
