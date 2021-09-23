@@ -32,11 +32,9 @@ ElementFactory.prototype.createElement = function (name, type, info) {
             if (element.extra && element.extra.btns) {
                 element.width = element.extra.btns.length * 38;
             }
-            if (element.extra) {
-                element.html = () => {
-                    return $.tmpl(element.template, element.extra);
-                };
-            }
+            element.html = () => {
+                return $.tmpl(element.template, element.extra || {});
+            };
         }
         this._elementRepository.add(element, type);
         return element;

@@ -520,7 +520,10 @@ Palette.prototype._init = function ($parent) {
     this._bindUnitWorkNodeEvent();
     this._bindEdgeEvent();
 
-    this._coreAPI.on("edge:connected", ({ edge, currentCell, currentMagnet }) => {
+    this._coreAPI.on("edge:connected", (obj) => {
+        const edge = obj.edge;
+        const currentCell = obj.currentCell;
+        const currentMagnet = obj.currentMagnet;
         const portId = currentMagnet.getAttribute('port');
         const extra = this.edgeExtra;
         currentCell.setPortProp(portId, 'connected', true)

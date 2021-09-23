@@ -1,0 +1,76 @@
+.context-pad-node {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    border: 1px solid #333f3d;
+    background-image: linear-gradient(to bottom, #21312e, #1e312d, #1f322f, #1e3430, #1e3431);
+
+    .context-pad-toolbox {
+        border-bottom: 1px solid #333f3d;
+        padding: 6px;
+        color: #ffffff;
+        display: flex;
+        flex-direction: row;
+
+        .context-pad-toolbox-item {
+            width: 36px;
+            height: 36px;
+            line-height: 0;
+            cursor: pointer;
+            transition: all 0.15s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            + .context-pad-toolbox-item {
+                margin-left: 8px;
+            }
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.25);
+                border-radius: 8px;
+            }
+        }
+    }
+
+    .context-pad-items {
+        padding: 6px;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+
+        .context-pad-item {
+            display: flex;
+            flex-direction: row;
+            padding: 8px;
+            justify-content: center;
+            font-size: 16px;
+            line-height: 18px;
+            cursor: pointer;
+            transition: all 0.15s ease-in-out;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.25);
+                border-radius: 8px;
+            }
+
+            .context-pad-item-icon {
+                width: 18px;
+                height: 18px;
+                line-height: 0;
+            }
+
+            .context-pad-item-text {
+                margin-left: 10px;
+            }
+
+            .context-pad-item-key {
+                margin-left: auto;
+            }
+
+            +.context-pad-item {
+                margin-top: 18px;
+            }
+        }
+    }
+}

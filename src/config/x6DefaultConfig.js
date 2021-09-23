@@ -99,7 +99,7 @@ const modulerConfig = {
         // 选择节点是否可以被拖动
         movable: true,
         // 显示节点选择框
-        showNodeSelectionBox: true,
+        showNodeSelectionBox: false,
         // 显示边选择框
         showEdgeSelectionBox: false,
     },

@@ -11,38 +11,20 @@ function CoreAPI(config) {
 
 CoreAPI.prototype._init = function () {
     this.graph = new Graph(this.config);
-    this.graph.on("node:click", ({ e, x, y, node, view }) => {
-        const listeners = this._eventBus["node:click"];
-        if (listeners && isArray(listeners)) {
-            listeners.forEach((item) => {
-                item({ e, x, y, node, view });
-            });
-        }
-    });
-    this.graph.on("node:mouseenter", ({ e, x, y, node, view }) => {
-        const listeners = this._eventBus["node:mouseenter"];
-        if (listeners && isArray(listeners)) {
-            listeners.forEach((item) => {
-                item({ e, x, y, node, view });
-            });
-        }
-    });
-    this.graph.on("node:mouseleave", ({ e, x, y, node, view }) => {
-        const listeners = this._eventBus["node:mouseleave"];
-        if (listeners && isArray(listeners)) {
-            listeners.forEach((item) => {
-                item({ e, x, y, node, view });
-            });
-        }
-    });
-    this.graph.on("edge:connected", ({ edge, currentCell, currentMagnet }) => {
-        const listeners = this._eventBus["edge:connected"];
-        if (listeners && isArray(listeners)) {
-            listeners.forEach((item) => {
-                item({ edge, currentCell, currentMagnet });
-            });
-        }
-    });
+    [
+        "blank:mouseup", 
+        "node:click", "node:mouseup", "node:mouseenter", "node:mouseleave", 
+        "edge:click", "edge:connected"
+    ].forEach(eventName => {
+        this.graph.on(eventName, (obj) => {
+            const listeners = this._eventBus[eventName];
+            if (listeners && isArray(listeners)) {
+                listeners.forEach((item) => {
+                    item(obj);
+                });
+            }
+        });
+    })
 };
 
 CoreAPI.prototype.createGraph = function (config) {
@@ -109,13 +91,12 @@ CoreAPI.prototype.addEdge = function (edge, graph) {
 };
 
 // 删除 Cell 从 Graph
-CoreAPI.prototype.delCellToGraph = function () {};
-
-// 删除 Node 从 Graph
-CoreAPI.prototype.delNodeToGraph = function () {};
-
-// 删除 Edge 从 Graph
-CoreAPI.prototype.delEdgeToGraph = function () {};
+CoreAPI.prototype.delCellFromGraph = function (cell) {
+    if (cell) {
+        return this.graph.removeCell(cell);
+    }
+    return null;
+};
 
 // 撤销
 CoreAPI.prototype.undo = function () {

@@ -1,4 +1,4 @@
-import { assign, isUndefined } from "min-dash";
+import { assign, isDefined, isUndefined } from "min-dash";
 import Base from "./Base";
 
 class Node extends Base {
@@ -28,20 +28,21 @@ class Node extends Base {
     }
 
     // 创建在画布上 返回 X6 Node 对象
-    create(id, x, y) {
+    create(id, x, y, isCreatePort) {
         if (isUndefined(this._coreAPI)) {
             return;
         }
-        this.createX6Element(id, x, y);
+        this.createX6Element(id, x, y, isCreatePort);
         this.addToGraph();
         return this.x6Element;
     }
 
     // 创建 x6 对象
-    createX6Element(id, x, y) {
+    createX6Element(id, x, y, isCreatePort) {
         if (isUndefined(this._coreAPI)) {
             return;
         }
+        isCreatePort = isDefined(isCreatePort) ? isCreatePort : true;
         this.id = id;
         this.x = x;
         this.y = y;
@@ -66,10 +67,12 @@ class Node extends Base {
                 position: item,
                 attrs: portAttrs,
             };
-            this.ports.items.push({
-                id: id,
-                group: group,
-            });
+            if (isCreatePort) {
+                this.ports.items.push({
+                    id: id,
+                    group: group,
+                });
+            }
         });
         this.x6Element = this._coreAPI.createNode(this.json(), this.graph);
         return this.x6Element;
@@ -82,6 +85,19 @@ class Node extends Base {
         }
         this._coreAPI.addNode(this.x6Element, this.graph);
         this._elementRepository.isCreate(this);
+    }
+
+    // 获取 设置 位置
+    position(x, y) {
+        if (this.x6Element) {
+            if (isDefined(x) && isDefined(y)) {
+                this.x6Element.position(x, y);
+                return true;
+            } else {
+                return this.x6Element.position();
+            }
+        }
+        return null;
     }
 }
 

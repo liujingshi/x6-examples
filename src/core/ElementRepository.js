@@ -22,6 +22,25 @@ ElementRepository.prototype.add = function (element, type, isCreate, x6Element) 
     this._store.push(el);
 };
 
+ElementRepository.prototype.remove = function (element) {
+    const elIndex = this._store.findIndex((t) => t.element == element ||
+     (t.x6Element && t.x6Element.id == element.id) || 
+     (t.element && t.element.x6Element && t.element.x6Element.id == element.id));
+    if (elIndex >= 0) {
+        this._store.splice(elIndex, 1);
+    }
+}
+
+ElementRepository.prototype.find = function (element) {
+    const el = this._store.find((t) => t.element == element ||
+    (t.x6Element && t.x6Element.id == element.id) || 
+    (t.element && t.element.x6Element && t.element.x6Element.id == element.id));
+    if (el) {
+        return el.element;
+    }
+    return null;
+}
+
 ElementRepository.prototype.isCreate = function (element) {
     const el = this._store.find((t) => t.element == element);
     if (el) {
@@ -57,5 +76,9 @@ ElementRepository.prototype.forEach = function (callback) {
         callback(item, index);
     });
 };
+
+ElementRepository.prototype.showMe = function () {
+    console.info(this._store);
+}
 
 export default ElementRepository;

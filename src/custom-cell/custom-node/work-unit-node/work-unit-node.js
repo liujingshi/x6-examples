@@ -2,7 +2,7 @@ import { Node } from "@base-model";
 import './work-unit-node.less';
 const templateStr = require('./work-unit-node.html');
 
-class ConfectSolution extends Node {
+class WorkUnitNode extends Node {
     constructor(coreAPI, elementRepository) {
         super(coreAPI, elementRepository);
         this.shape = "html";
@@ -12,4 +12,4 @@ class ConfectSolution extends Node {
     }
 }
 
-export default ConfectSolution;
+export default WorkUnitNode;

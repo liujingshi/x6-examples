@@ -1,6 +1,7 @@
 import { assign } from 'min-dash';
 import Menu from "./Menu";
 import Palette from "./Palette";
+import ContextPad from "./ContextPad";
 
 function Toolbox(coreAPI, elementFactory, elementRepository) {
     this._coreAPI = coreAPI;
@@ -17,14 +18,24 @@ Toolbox.prototype.createMenu = function () {
     this.menu = new Menu(this._coreAPI, this._elementFactory, this._elementRepository, this);
 }
 
-Toolbox.prototype.createPalette = function (parent, props) {
+Toolbox.prototype.createPalette = function ($parent, props) {
     const defaults = {
         coreAPI: this._coreAPI,
         elementFactory: this._elementFactory,
         elementRepository: this._elementRepository,
     };
     props = assign({}, defaults, props || {});
-    this.palette = new Palette(parent, props);
+    this.palette = new Palette($parent, props);
+}
+
+Toolbox.prototype.createContextPad = function (props) {
+    const defaults = {
+        coreAPI: this._coreAPI,
+        elementFactory: this._elementFactory,
+        elementRepository: this._elementRepository,
+    };
+    props = assign({}, defaults, props || {});
+    this.contextPad = new ContextPad(props);
 }
 
 export default Toolbox;

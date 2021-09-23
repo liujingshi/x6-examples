@@ -17,6 +17,7 @@ function Diagram(props) {
     const elementFactory = new ElementFactory(coreAPI, elementRepository);
     const toolbox = new Toolbox(coreAPI, elementFactory, elementRepository);
     toolbox.createPalette(props.paletteContainer);
+    toolbox.createContextPad();
 
 }
 
