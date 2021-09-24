@@ -1,3 +1,5 @@
+// import "@d20/sass/components/_accordion.scss";
+// import "@d20/sass/components/_variables.scss";
 import "@css/palette.less";
 import { viewerConfig } from "@config/x6DefaultConfig";
 import { assign, isArray, isDefined } from "min-dash";
